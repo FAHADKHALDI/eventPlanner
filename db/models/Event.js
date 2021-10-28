@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongooseSlugPlugin = require("mongoose-slug-plugin");
 
 const EventSchema = mongoose.Schema({
   organizer: String,
@@ -20,4 +19,4 @@ const EventSchema = mongoose.Schema({
   endDate: Date,
 });
 
-EventSchema.plugin(mongooseSlugPlugin, { tmpl: "<%=name%>" });
+module.exports = mongoose.model("Event", EventSchema);

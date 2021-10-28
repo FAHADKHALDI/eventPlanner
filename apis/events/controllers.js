@@ -35,3 +35,17 @@ exports.eventUpdate = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.eventDelete = async (req, res, next) => {
+  const { eventId } = req.params;
+  try {
+    const events = await Event.findByIdAndDelete({ _id: eventId });
+    if (events) {
+      return res.status(204).end();
+    } else {
+      return res.status(404).json({ message: "Event not found!" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
