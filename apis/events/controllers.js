@@ -17,3 +17,21 @@ exports.eventCreate = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.eventUpdate = async (req, res, next) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findByIdAndUpdate(
+      { _id: eventId },
+      req.body,
+      { new: true, runValidators: true } // returns the updated event
+    );
+    if (event) {
+      return res.status(200).json(event);
+    } else {
+      return res.status(404).json({ message: "Event Not Found" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
