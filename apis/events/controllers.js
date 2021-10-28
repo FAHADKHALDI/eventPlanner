@@ -49,3 +49,14 @@ exports.eventDelete = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.eventDetail = async (req, res, next) => {
+  try {
+    const { eventId } = req.params;
+    const events = await Event.findById({ _id: eventId });
+
+    res.json(events);
+  } catch (error) {
+    next(error);
+  }
+};
