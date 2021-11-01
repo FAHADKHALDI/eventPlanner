@@ -1,6 +1,7 @@
 const express = require("express");
 const eventRoutes = require("./apis/events/routes");
 const connectDb = require("./db/database");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ message: err.message });
 });
+
+app.use(morgan("dev"));
 
 PORT = 8000;
 app.listen(PORT, () => {

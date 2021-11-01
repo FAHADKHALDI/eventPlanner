@@ -60,3 +60,15 @@ exports.eventDetail = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.fullBookedEvent = async (req, res, next) => {
+  try {
+    let events = await Event.find({
+      $expr: { $eq: ["$numOfSeats", "$bookedSeats"] },
+    });
+
+    res.json(events);
+  } catch (error) {
+    next(error);
+  }
+};

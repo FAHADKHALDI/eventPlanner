@@ -2,19 +2,11 @@ const mongoose = require("mongoose");
 
 const EventSchema = mongoose.Schema({
   organizer: String,
-  name: {
-    type: String,
-    required: true,
-  },
+  name: String,
   email: String,
-  image: { type: String },
-  numOfSeats: {
-    type: Number,
-    min: 0,
-  },
-  numOfSeats: {
-    type: Number,
-  },
+  image: String,
+  numOfSeats: Number,
+  bookedSeats: Number,
   startDate: Date,
   endDate: Date,
 });
